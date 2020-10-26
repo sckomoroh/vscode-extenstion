@@ -1,0 +1,90 @@
+{
+	"name": "class-creator",
+	"displayName": "ClassCreator",
+	"description": "Class creator",
+	"publisher": "sckomoroh",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.35.0"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"onCommand:extension.cpp_create_class",
+		"onCommand:extension.cpp_inline_create_class",
+		"onCommand:extension.cpp_test_create_class"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.cpp_create_class",
+				"title": "Create C++ class"
+			},
+			{
+				"command": "extension.cpp_inline_create_class",
+				"title": "Create inline C++ class"
+			},
+			{
+				"command": "extension.cpp_test_create_class",
+				"title": "Create C++ class with tests"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.cpp_create_class"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.cpp_inline_create_class"
+				},
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.cpp_test_create_class"
+				}
+			]
+		},
+		"configuration" : {
+			"title": "Class creation",
+			"type": "object",
+			"properties": {
+				"class-creator.rootSourceFolder" : {
+					"type" : "string",
+					"default" : "src",
+					"description": "The root folder of the sources"
+				},
+				"class-creator.rootTestsFolder" : {
+					"type" : "string",
+					"default" : "tests",
+					"description": "The root folder of the tests"
+				},
+				"class-creator.defaultNamespace" : {
+					"type" : "string",
+					"description" : "The default C++ namespace of class (like com.company.object)"
+				},
+				"class-creator.is17std" : {
+					"type" : "boolean",
+					"default" : false,
+					"description" : "Create C++ namespace using C++17"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
+	},
+	"devDependencies": {
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
+	}
+}

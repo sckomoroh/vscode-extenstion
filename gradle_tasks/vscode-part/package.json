@@ -1,0 +1,86 @@
+{
+  "name": "gradle-tasks",
+  "displayName": "gradle-tasks",
+  "description": "Gradle tasks",
+  "version": "0.0.1",
+  "publisher": "selfproduction",
+  "engines": {
+    "vscode": "^1.32.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "workspaceContains:./build.gradle"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "gradleTaskView.runTask",
+        "title": "Run task"
+      },
+      {
+        "command": "gradleTaskView.refreshTasks",
+        "title": "Refresh tasks"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gradle-tasks-explorer",
+          "title": "Gradle Tasks Explorer",
+          "icon": "media/icon.png"
+        }
+      ]
+    },
+    "views": {
+      "gradle-tasks-explorer": [
+        {
+          "id": "gradleTaskView",
+          "name": "Gredle Tasks"
+        }
+      ]
+    },
+    "menus": {
+      "commandPalette": [
+        {
+          "command": "gradleTaskView.runTask"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "gradleTaskView.refreshTasks",
+          "when": "view == gradleTaskView",
+          "group": "navigation"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gradleTaskView.runTask",
+          "when": "view == gradleTaskView && viewItem == gradleTask",
+          "group": "inline"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./node_modules/vscode/bin/test"
+  },
+  "devDependencies": {
+    "@types/mkdirp": "^0.5.2",
+    "@types/node": "*",
+    "@types/rimraf": "^2.0.2",
+    "tslint": "^5.16.0",
+    "typescript": "^3.5.1",
+    "@types/vscode": "^1.35.0",
+    "java": "^0.11.0"
+  },
+  "dependencies": {
+    "ts-serializer": "^1.0.1"
+  }
+}

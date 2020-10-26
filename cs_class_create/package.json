@@ -1,0 +1,67 @@
+{
+	"name": "cs-class-create",
+	"displayName": "CSharpClassCreate",
+	"description": "C# class creator",
+	"version": "0.0.1",
+	"engines": {
+		"vscode": "^1.39.0"
+	},
+	"categories": [
+		"Other"
+	],
+
+	"activationEvents": [
+		"onCommand:extension.cs_create_class"
+	],
+
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "extension.cs_create_class",
+				"title": "Create C# class"
+			}
+		],
+		"menus": {
+			"explorer/context": [
+				{
+					"when": "explorerResourceIsFolder",
+					"command": "extension.cs_create_class"
+				}
+			]
+		},
+		"configuration" : {
+			"title": "CS class creation",
+			"type": "object",
+			"properties": {
+				"cs-class-creator.rootSourceFolder" : {
+					"type" : "string",
+					"default" : "src",
+					"description": "The root folder of the sources"
+				},
+				"cs-class-creator.defaultNamespace" : {
+					"type" : "string",
+					"description" : "The default C# namespace of class (like com.company.object)"
+				}
+			}
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^5.2.6",
+		"@types/node": "^10.12.21",
+		"@types/vscode": "^1.39.0",
+		"glob": "^7.1.4",
+		"mocha": "^6.1.4",
+		"typescript": "^3.3.1",
+		"tslint": "^5.12.1",
+		"vscode-test": "^1.2.0"
+	}
+}

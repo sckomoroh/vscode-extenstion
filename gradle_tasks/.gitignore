@@ -1,0 +1,11 @@
+vscode-part/node_modules/
+vscode-part/out/
+vscode-part/gradle-conn-test.main.jar
+vscode-part/.gradle
+gradle-part/.gradle
+gradle-part/gradle
+gradle-part/.idea/
+gradle-part/build/
+gradle-part/out/
+gradle-part/gradlew
+gradle-part/gradlew.bat
